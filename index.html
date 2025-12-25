@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Preview Example</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    #image {
+      width: 400px;
+      height: 300px;
+      border: 2px solid #333;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .preview {
+      width: 100px;
+      height: 75px;
+      margin: 10px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Hover over an image below to display here:</h2>
+
+  <!-- Preview area -->
+  <div id="image">Hover over an image below to display here.</div>
+
+  <!-- Thumbnails -->
+  <img class="preview" src="car1.png" 
+       alt="Red Placeholder" onmouseover="upDate(this)" onmouseout="undo()">
+  <img class="preview" src="car2.png" 
+       alt="Blue Placeholder" onmouseover="upDate(this)" onmouseout="undo()">
+  <img class="preview" src="car3.png" 
+       alt="Green Placeholder" onmouseover="upDate(this)" onmouseout="undo()">
+
+  <script>
+    function upDate(previewPic) {
+      // Debugging logs
+      console.log("Event triggered!");
+      console.log("Alt text: " + previewPic.alt);
+      console.log("Source: " + previewPic.src);
+
+      // Change text inside #image
+      document.getElementById("image").innerHTML = previewPic.alt;
+
+      // Change background image of #image
+      document.getElementById("image").style.backgroundImage = "url('" + previewPic.src + "')";
+    }
+
+    function undo() {
+      // Reset background image
+      document.getElementById("image").style.backgroundImage = "url('')";
+
+      // Reset text
+      document.getElementById("image").innerHTML = "Hover over an image below to display here.";
+    }
+  </script>
+
+</body>
+</html>
